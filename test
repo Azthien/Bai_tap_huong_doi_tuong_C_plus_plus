@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+int UCLN(int A, int B) {
+    if (B == 0)
+        return A;
+    return UCLN(B, A%B);
+}
+int BCNN(int a, int b){
+	return a*b/ UCLN(a,b);
+} 
+class phanso{
+	private : int tu,mau;
+	public :
+		phanso();
+		phanso(int tu, int mau);
+		void hienthi();
+		void set_tu(int t);
+		void set_mau(int m);
+		int get_tu();
+		int get_mau();
+		phanso rutgon(){
+			phanso a;
+			a.mau=mau;
+			a.tu=tu;
+			int x=UCLN(a.tu,a.mau);
+			a.tu =a.tu /x;
+			a.mau =a.mau/x;
+			return a;
+		}
+        phanso cong(phanso b){
+			phanso tong;
+			tong.tu = this -> tu*b.mau;
+			tong.mau = this -> mau*b.tu;
+			tong=tong.rutgon();
+			return tong;
+		}
+};
+ void phanso::hienthi(){
+    cout<<tu<<"/"<<mau<<endl;
+}
+phanso::phanso(){
+	this->tu=0;
+	this->mau = 1;
+}
+phanso::phanso(int t, int m)
+{
+	this->tu = t;
+	this->mau = m;
+}
+
+int main(){
+	phanso ps1; //0/1
+	ps1.hienthi();
+	phanso ps2(15,5); //2/3
+	ps2=ps2.rutgon();
+	ps2.hienthi();
+	
+}
